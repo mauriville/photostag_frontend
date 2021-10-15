@@ -15,7 +15,11 @@
                                     <div class="float-right">
                                         <button
                                             @click.prevent="newImage"
-                                            class="btn btn-sm btn-success waves-effect waves-light m-l-10"
+                                            class="
+                                                btn btn-sm btn-success
+                                                waves-effect waves-light
+                                                m-l-10
+                                            "
                                         >
                                             <i class="fa fa-plus"></i>
                                             {{ $t("actions.new") }}
@@ -43,12 +47,68 @@
         <b-modal ref="view-image" size="md" title="Image">
             <div class="row">
                 <div class="col-md-6">
-                    <img :src="baseURL+'storage/documents/'+image.ImageUrl" style="width: 100%" />
+                    <img
+                        :src="baseURL + 'storage/documents/' + image.ImageUrl"
+                        style="width: 100%"
+                    />
                 </div>
                 <div class="col-md-6">
                     <h4>Tittle</h4>
                     <p class="text-muted">{{ image.Tittle }}</p>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8">
+                    <vue-bootstrap-typeahead
+                        :data="tags"
+                        v-model="queryTag"
+                        :serializer="(item) => item.Label"
+                        placeholder="Write the Label"
+                        @hit="
+                            selectedTag = $event;
+                            tagimage.Tag = $event.id;
+                        "
+                    />
+                    <ul
+                        class="parsley-errors-list filled"
+                        id="parsley-id-19"
+                        v-if="errorBag.Tag"
+                    >
+                        <li class="parsley-required">{{ errorBag.Tag }}</li>
+                    </ul>
+                </div>
+                <div class="col-4">
+                    <button
+                        class="btn btn-success btn-block"
+                        @click.prevent="saveTagImage"
+                    >
+                        Add Tag
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <h4>Tags Selected</h4>
+                    </thead>
+                    <tbody>
+                        <tr v-for="t in image.tag" v-bind:key="t.id">
+                            <td align="center">
+                                <span class="badge badge-primary">
+                                    @{{ t.Label }}
+                                </span>
+                            </td>
+                            <td align="center">
+                                <span
+                                    class="badge badge-danger"
+                                    @click="deleteTagImage(t)"
+                                    >x</span
+                                >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <template #modal-footer>
                 <a @click.prevent="editImage" class="btn btn-warning">
@@ -66,7 +126,12 @@
             <form role="form">
                 <div class="form-group">
                     <label for="Tittle">Tittle</label>
-                    <input type="text" class="form-control" name="Tittle" v-model="image.Tittle" />
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="Tittle"
+                        v-model="image.Tittle"
+                    />
                     <ul
                         class="parsley-errors-list filled"
                         id="parsley-id-19"
@@ -87,9 +152,11 @@
                         Cargando Archivo
                         <span class="sr-only">Cargando...</span>
                     </span>
-                    <span v-show="!isLoadingFile && image.ImageUrl" class="text-info">
-                        <i class="fa fa-thumbs-o-up"></i> Archivo
-                        Cargado!
+                    <span
+                        v-show="!isLoadingFile && image.ImageUrl"
+                        class="text-info"
+                    >
+                        <i class="fa fa-thumbs-o-up"></i> Archivo Cargado!
                     </span>
                 </div>
             </form>
@@ -98,7 +165,11 @@
                     <i class="fa fa-save"></i>
                     {{ $t("actions.save") }}
                 </a>
-                <button type="button" class="btn btn-danger" @click.prevent="cancelImage()">
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    @click.prevent="cancelImage()"
+                >
                     <i class="fa fa-window-close"></i>
                     {{ $t("actions.cancel") }}
                 </button>

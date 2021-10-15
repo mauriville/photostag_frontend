@@ -15,20 +15,13 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 //import 'vue-toast-notification/dist/theme-default.css';
 import 'vue-toast-notification/dist/theme-sugar.css';
 
-import * as VueGoogleMaps from 'vue2-google-maps';
+import VueBootstrapTypeahead from 'vue-bootstrap-typeahead';
 
 Vue.use(VueSweetalert2);
 Vue.use(VueToast);
 
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyCWkx1y-YK2ZoqkNuwPRKOCIIkQnws7QEY',
-  },
- 
-})
-Vue.component('gmap-map', VueGoogleMaps.Map);
-Vue.component('gmap-marker', VueGoogleMaps.Marker);
 
+Vue.component('vue-bootstrap-typeahead', VueBootstrapTypeahead)
 Vue.config.productionTip = false
 
 

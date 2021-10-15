@@ -59,6 +59,10 @@ export default class MainService {
         return axios.get('api/Tag/list');
     }
 
+    select2Tag(q) {
+        return axios.get('api/Tag/select2?q=' + q);
+    }
+
     storeTag(item) {
         return axios.post('api/Tag/store', item);
     }

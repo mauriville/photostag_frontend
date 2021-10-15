@@ -13,7 +13,7 @@ export default {
                 "url": ss.indexImage(),
                 headers: ss.getToken(),
             },
-            baseURL : process.env.VUE_APP_MAIN_SERVICE,
+            baseURL: process.env.VUE_APP_MAIN_SERVICE,
             columns: [
                 { data: 'id', name: 'id', orderable: false, searchable: false, visible: false },
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', title: 'N', orderable: false, searchable: false },
@@ -25,10 +25,17 @@ export default {
                     searchable: false
                 },
             ],
+
+            tags: [],
+            tag: {},
+            queryTag: "",
+
+            tagimage: {},
             images: [],
             image: {},
             isLoading: false,
-            errorBag: {}
+            errorBag: {},
+            isLoadingFile: false
         };
     },
     methods: {
@@ -137,6 +144,35 @@ export default {
                     )
                 });
         },
+        saveTagImage() {
+            this.tagimage.Image = this.image.id;
+            this.ss.storeTagImage(this.tagimage).then(
+                (result) => {
+                    console.log(result);
+                    let response = result.data;
+                    this.$bvToast.toast(
+                        response.msg,
+                        {
+                            title: 'Correcto',
+                            variant: 'success',
+                            autoHideDelay: 5000
+                        }
+                    )
+                    //this.$refs['view-consulta'].show(); //para volver al modal
+                    this.showImage(this.image.id);
+                })
+                .catch((error) => {
+                    this.errorBag = error.response.data.errors;
+                    this.$bvToast.toast(
+                        'Problema al Guardar el Registro, favor verificar los Datos',
+                        {
+                            title: 'Error',
+                            variant: 'danger',
+                            autoHideDelay: 5000
+                        }
+                    )
+                });
+        },
         deleteImage() {
             this.$swal({
                 title: "Estas seguro que deseas eliminar?",
@@ -170,11 +206,59 @@ export default {
                     }
                 });
         },
+        deleteTagImage(t) {
+            let tagimage = {
+                Tag: t,
+                Image: this.image.id
+            };
+            this.$swal({
+                title: "Estas seguro que deseas eliminar?",
+                text: "Esta accion es irreversible!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        this.ss.destroyTagImage(tagimage)
+                            .then((result) => {
+                                let response = result.data;
+                                console.log(response);
+                                this.$bvToast.toast(
+                                    response.msg,
+                                    {
+                                        title: 'Correcto',
+                                        variant: 'success',
+                                        autoHideDelay: 5000
+                                    }
+                                )
+                                this.showImage(this.image.id);
+                            })
+                            .catch(error => {
+                                console.log(error);
+                            })
+                    } else {
+                        //swal("Your imaginary file is safe!");
+                    }
+                });
+        },
         draw() {
             window.$('.btn-datatable-Image').on('click', (evt) => {
                 const data = window.$(evt.target)[0].id;
                 this.showImage(data);
             });
+        }
+    },
+    watch: {
+        queryTag(q) {
+            this.ss.select2Tag(q).then((res) => {
+                //console.log(res);
+                if (res.data.success) {
+                    this.tags = res.data.items;
+                } else {
+                    this.tags = [];
+                }
+            })
         }
     },
     components: {
