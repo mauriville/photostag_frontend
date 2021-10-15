@@ -6,7 +6,6 @@
                 color="#003f8a"
                 dark
                 flat
-                v-if="this.$router.currentRoute.name !== 'Login'"
             >
                 <v-app-bar-nav-icon
                     @click.stop="drawer = !drawer"
@@ -26,7 +25,6 @@
                 :permanent="$vuetify.breakpoint.mdAndUp"
                 app
                 flat
-                v-if="this.$router.currentRoute.name !== 'Login'"
             >
                 <template v-slot:prepend>
                     <v-list-item two-line>
@@ -35,9 +33,7 @@
                         </v-list-item-avatar>
 
                         <v-list-item-content>
-                            <v-list-item-title v-if="auth.persona">{{
-                                auth.persona.Persona
-                            }}</v-list-item-title>
+                            <v-list-item-title>Mauri Villegas</v-list-item-title>
                             <v-list-item-subtitle
                                 >Sesion Iniciada</v-list-item-subtitle
                             >

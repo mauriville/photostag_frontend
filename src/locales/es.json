@@ -1,8 +1,7 @@
 {
   "nav": {
-      "Persona": "Persona",
-      "Usuario": "Usuario",
-      "Profile": "Perfil"
+    "Tag": "Etiqueta",
+    "Image": "Imagen"
 
   },
   "actions": {

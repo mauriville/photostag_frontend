@@ -1,8 +1,7 @@
 {
   "nav": {
-      "Persona": "People",
-      "Usuario": "User",
-      "Profile": "Profile"
+      "Tag": "Tag",
+      "Image": "Image"
   },
   "actions": {
       "init": "Start",

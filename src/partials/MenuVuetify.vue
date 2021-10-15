@@ -3,17 +3,17 @@
         <v-list-item-group>
             <router-link
                 class="black--text text--accent-4"
-                to="Persona"
+                to="Tag"
                 active-class="blue--text text--accent-4"
             >
                 <v-list-item>
                     <v-list-item-icon>
-                        <v-icon>mdi-account</v-icon>
+                        <v-icon>mdi-tag</v-icon>
                     </v-list-item-icon>
 
                     <v-list-item-content>
                         <v-list-item-title>{{
-                            $t("nav.Persona")
+                            $t("nav.Tag")
                         }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -21,39 +21,22 @@
 
             <router-link
                 class="black--text text--accent-4"
-                to="Usuario"
+                to="Image"
                 active-class="blue--text text--accent-4"
             >
                 <v-list-item>
                     <v-list-item-icon>
-                        <v-icon>mdi-account-multiple</v-icon>
+                        <v-icon>mdi-image</v-icon>
                     </v-list-item-icon>
 
                     <v-list-item-content>
                         <v-list-item-title>{{
-                            $t("nav.Usuario")
+                            $t("nav.Image")
                         }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </router-link>
 
-            <router-link
-                class="black--text text--accent-4"
-                to="Profile"
-                active-class="blue--text text--accent-4"
-            >
-                <v-list-item>
-                    <v-list-item-icon>
-                        <v-icon>mdi-account-circle</v-icon>
-                    </v-list-item-icon>
-
-                    <v-list-item-content>
-                        <v-list-item-title>{{
-                            $t("nav.Profile")
-                        }}</v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-            </router-link>
         </v-list-item-group>
     </v-list>
 </template>
