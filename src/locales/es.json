@@ -1,0 +1,32 @@
+{
+  "nav": {
+      "Persona": "Persona",
+      "Usuario": "Usuario",
+      "Profile": "Perfil"
+
+  },
+  "actions": {
+      "init": "Iniciar",
+      "new": "Nuevo",
+      "add": "Añadir",
+      "save": "Guardar",
+      "send": "Enviar",
+      "edit": "Editar",
+      "cancel": "Cancelar",
+      "destroy": "Eliminar",
+      "do": "Realizar",
+      "details": "Detalles",
+      "changepassword": "Cambiar Contraseña",
+      "reload": "Actualizar",
+      "results": "Resultados",
+      "discard": "Descartar",
+      "print": "Imprimir",
+      "preview": "Vista Previa",
+      "validate": "Validar",
+      "generate": "Generar",
+      "download": "Descargar",
+      "confirm": "Confirmar",
+      "cambiopassword": "Cambio de Password"
+  }
+
+}

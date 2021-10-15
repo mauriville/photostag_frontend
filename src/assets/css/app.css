@@ -1,0 +1,14 @@
+@import "../plugins/datatables/jquery.dataTables.min.css";
+@import "../plugins/datatables/buttons.bootstrap4.min.css";
+@import "../plugins/datatables/fixedHeader.bootstrap.min.css";
+@import "../plugins/datatables/responsive.bootstrap.min.css";
+@import "../plugins/datatables/dataTables.bootstrap4.min.css";
+@import "../plugins/datatables/scroller.bootstrap.min.css";
+
+.btn-group-xs > .btn,
+.btn-xs {
+    padding: 0.4rem 0.4rem;
+    font-size: 0.875rem;
+    line-height: 0.5;
+    border-radius: 0.2rem;
+}
